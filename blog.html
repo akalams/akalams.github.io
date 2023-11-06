@@ -72,6 +72,9 @@
 
 						<p>I had a similar idea of maintaining DRYness with the Old King. Since the Old King's ability effectively turns him into a city, I decided to implemented his special behavior inside the purchase strategy. I accomplished this by overloading the AICityState constructor with a set of parameters that accepts a commander instead of a city. The AI was also supposed to prioritize purchasing unit with the Old King over cities since those units will be more powerful, so I added an extra check that prevented purchase strategies from cities being created if the Old King had a special charge.</p>
 
+						<center><img src="images/Old King Constructor.jpg" width="800" height="600"></center>
+						<p></p>
+
 						<p>However, working on these features was not a smooth process. Early on this week, I was running into a gamebreaking bug where the AI would break when attempting to capture cities. I couldn't figure out why this was happening, even when stepping through the debugger, so I decided to ask the other programmers on the team for help. After some investigating, I learned that a change had been made so that the commanders no longer could capture cities. However, the AI would still attempt to use commanders for capturing cities, causing the game to stall indefinately. Fixing this problem was as easy as adding an extra check in the city capturing strategy, but it was a good lesson to always stay in the loop about design decisions.</p>
 
 						<h2>AI Scriptable Objects (2 hours)</h2>

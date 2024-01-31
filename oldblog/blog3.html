@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+					<!-- Blog 3 -->
+                    <section id="three" class="wrapper style2">
+                        <div class="inner">
+                            <h1>Blog 3 (10/22-11/5) - More AI</h1>
+                            <h2>Introduction</h2>
+                            <p>These past two weeks have given me the chance to fully immerse myself in the AI systems. I have been finishing up a couple AI strategies while also starting on a new system that will hopefully help our AI make better decisions.</p>
+                            
+                            <h2>Meetings (4 hours)</h2>
+                            <p>As usual, we had our weekly studio meetings to discuss planned features and playtest the current build.</p>
+    
+                            <h2>AI Purchase Behavior (6 hours)</h2>
+                            <p>During week 2 of sprint 2, I was tasked with finishing up the purchase behavior for the AI. If you remember last week, I had written a formula to help calculate the best unit to spawn and wheret to spawn it. This week, I just had to implement it.</p>
+    
+                            <p>I began by figuring out a way to calculate the best unit to fit in a team comp. First, the AI calculates what its current unit composition is. It should ideally strive for 50% melee units, 30% ranged units, and 20% aerial units. If a unit helps the AI get closer to this target, it will be more likely to purchase that unit.</p>
+    
+                            <p>When determining how to counter the enemy's composition, the AI will look at the proportion of the player's army that is weak to ranged and the proportion that is weaked to air units. If the player has a larger proportion of units weak to a certain type than the AI has to counter it, then the AI will prioritize purchasing the countering unit.</p>
+    
+                            <p>The last element to implement was the location score. The AI should prioritize purchasing units where the AI is outnumbered by the player. To check for this, I used the AICityState implemented previously in the code base which tracks nearby allies and enemies. A strategy will lose score for placing units where the AI outnumbers the player and gain points where the player outnumbers the AI.</p>
+                            
+                            <center><video autoplay muted loop><source src="../images/City Purchase.mp4"></video></center>
+                            <p></p>
+                            <h2>AI Commander Special Behaviors (6 hours)</h2>
+                            <p>My major task for week 1 of sprint 3 was to give the AI the ability to consider and use their commander's special ability. I started with the Swordmaster's second attack ability and the Old King's spawn unit ability.</p>
+    
+                            <p>To maintain DRYness, I decided to implement the strategy for the Swordmaster's second attack within attack strategy. Theoretically, the Swordmaster's decision to use their second attack should take into account all the factors that caused them to do their first attack. Adding this behavior required the AI to check for the Second Attack ability on each unit. If a unit could attack again and had already attacked, it would consider a second attack strategy</p>
+    
+                            <p>I had a similar idea of maintaining DRYness with the Old King. Since the Old King's ability effectively turns him into a city, I decided to implemented his special behavior inside the purchase strategy. I accomplished this by overloading the AICityState constructor with a set of parameters that accepts a commander instead of a city. The AI was also supposed to prioritize purchasing unit with the Old King over cities since those units will be more powerful, so I added an extra check that prevented purchase strategies from cities being created if the Old King had a special charge.</p>
+    
+                            <center><img src="../images/Old King Constructor.jpg" width="800" height="600"></center>
+                            <p></p>
+    
+                            <p>However, working on these features was not a smooth process. Early on this week, I was running into a gamebreaking bug where the AI would break when attempting to capture cities. I couldn't figure out why this was happening, even when stepping through the debugger, so I decided to ask the other programmers on the team for help. After some investigating, I learned that a change had been made so that the commanders no longer could capture cities. However, the AI would still attempt to use commanders for capturing cities, causing the game to stall indefinately. Fixing this problem was as easy as adding an extra check in the city capturing strategy, but it was a good lesson to always stay in the loop about design decisions.</p>
+    
+                            <h2>AI Scriptable Objects (2 hours)</h2>
+                            <p>My last small task for the second week was to move some of the weights and multipliers which score AI behavior out of scripts and into scriptable objects. This will hopefully help our designers better tune the AI without needing to dive into the code themselves. I also made sure to provide helpful tooltips for everything designers know what they need to modify to change the AI's behavior.</p>
+                        
+                            <center><video autoplay muted loop><source src="../images/ScriptableObjectsSmall.mp4"></video></center>
+                            <p></p>
+    
+                            <h2>AI Tile Weighting System (1 hour)</h2>
+                            <p>Next week, I plan to finish a system which will allow the AI to evaluate the importance of each tile on the board. I began creating it this week, but won't finish until next week. Stay tuned to learn more about this nifty system!</p>
+    
+                            <h2>Conclusion</h2>
+                            <p>I spent a total of 19 hours this week. I feel happy with my progress and am excited to continute to refine the AI system in our game!</p>
+                        </div>
+                    </section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

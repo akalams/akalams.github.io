@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+					<!-- Blog 4 -->
+				<section id="four" class="wrapper style1">
+					<div class="inner">
+						<h1>Blog 4 (11/5-11/19) - Systems, Behaviors, and Bugfixes</h1>
+						<h2>Introduction</h2>
+						<p>As the name suggests, these past two weeks had me working on new systems, new AI behaviors, and some bugfixes as well. Let's dive into it!</p>
+
+						<h2>Meetings (4 hours)</h2>
+						<p>Two meetings. Two hours each. You know the drill.</p>
+
+						<h2>Finishing the AI Tile System (5 hours)</h2>
+						<p>Last week, I teased that I was working on a new system that would allow the AI to evaluate the state of the board to find the best positions to place its units. These last two weeks gave me the chance to finish them!</p>
+
+						<p>The system works by iterating through each tile on the map and calculating information about those tiles. The system will account for nearby objectives, nearby enemies, and how dangerous a tile is. Once these values are calculated for each tile, the actual tile score is dependant on the unit which is evaluating that position. For example, units that prioritize objectives are more likely to move towards tiles near objectives. Units with low health, will avoid dangerous tiles.</p>
+
+						<p>To help me debug, I also created a nifty editor tool which takes a unit type and health as input. The tool will then highlight tiles on the map based on how units score that tile, with red squares being more valuable and blue squares being less valuable. Hopefully, this tool will give designers a better understanding of how the AI is making its decisions so we can make it as smart as possible.</p>
+						<center><video autoplay muted loop><source src="../images/TileWeight_1.mp4"></video></center>
+						<p></p>
+						<p>One downside of the system is that it is rather computationally expensive. I will have to make improvements to make it more efficient in the coming weeks.</p>
+
+						<h2>Archmage Teleport Behavior (6 hours)</h2>
+						<p>The largest task I had this week was working on a behavior so the AI could use the Archmage's special ability. Unlike the other two specials, the Archmage's behavior cannot easily be created using other behaviors. Instead, I had to create two brand new behaviors.</p>
+
+						<p>Since this was a rather complex task, I had to break it down into smaller, more digestible chunks. The AI first needed to move the Archmage near two ally units. The Archmage then needed to pick a valid square to teleport to once it was adjacent to enough allies. Finally, the Archmage would have to teleport itself and adjacent allies to the square it deems best.</p>
+
+						<p>Once I understood what I needed to do, the problem became much more approachable. I began with the question of how the AI should pick the square to teleport to. Thankfully, since I had already been working on the tile weighting system, this was pretty easy to implement. The Archmage would pick tiles near objectives and enemies.</p>
+
+						<p>I next worked on the mechanics of executing the behavior. To do this, I tracked the list of adjacent allies in an array along with the directions they were from the Archmage. Once I had this data structure set up, implementing it was as easy as moving each unit alongwith the Archmage.</p>
+
+						<p>Lastly, I created a simple behavior that would check for nearby allies that were grouped up. If the Archmage could move near them, it would. This video shows the results from my work!</p>
+						<center><video autoplay muted loop><source src="../images/ArchmageBehavior.mp4"></video></center>
+						<p></p>
+						<h2>Healing, Key Locations, and Artifacts (3 hours)</h2>
+						I had some other smaller AI behaviors assigned to me as well.
+
+						One was a behavior that would allow the AI to move its units to its cities when they are low on health. This strategy was pretty simple to implement, requiring me to check if a unit's health is below a certain threshold. The lower a unit's health, the more likely it is to retreat to a city to heal.
+
+						I also had to make the AI consider key locations and artifacts in its strategies. Since key locations and artifacts behave similar to cities, I chose to create a new data structure called a AICapturable state. This base structure would contain the tile a capturable belongs to, a list of nearby allies, and a list of nearby enemies. I then created children of this data structure for each type of capturable (cities, key locations, and artifacts). Once this structure had been created, scoring for behaviors could be reused across different types of capturables.
+						<p></p>
+						<h2>AI Movement Bugfix (1 hour)</h2>
+						<p>The last thing I worked on this week was a bugfix that had been haunting the AI for some time. Basically, units would sometimes ignore their movement limitations and hilariously treck across the entire map in a single move.</p>
+
+						<p>This behavior was curious since the AI was supposed to find the best intermediate for a square if the AI could not reach its target tile in one turn. While diving into the code in the debugger, I found that the intermediate tile was not being properly set, causing the AI to still move to its goal destination even if it was outside a unit's move range.</p>
+
+						<center><video autoplay muted loop><source src="../images/IncorrectBehavior.mp4"></video></center>
+						<center><i><p>The incorrect movement behavior. Look at those units go!</p></i></center>
+						<p></p>
+						<center><video autoplay muted loop><source src="../images/CorrectBehavior.mp4"></video></center>
+						<center><i><p>The correct movement behavior.</p></i></center>
+						<p></p>
+
+						<h2>Conclusion</h2>
+						<p>I spent a total of 19 hours this week. I am looking forward to finishing out the project and the semester in the coming weeks!</p>
+					</div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

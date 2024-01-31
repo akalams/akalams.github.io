@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 2 -->
+				<section id="two" class="wrapper style1">
+					<div class="inner">
+						<h1>Blog 2 (10/8-10/22) - Bugfixing and AI</h1>
+						<h2>Introduction</h2>
+						<p>After getting back from my vacation, I was excited to get to get back into the swing of things in person at Wolverine Soft. These past two weeks consisted of our first QA sprint and the first half of our second feature sprint.</p>
+
+						<h2>Meetings (4 hours)</h2>
+						<p>These past two weeks had two studio meetings where we playtested a build and took notes on bugs we had and changes that needed to be made. These sessions informed what needed to be fixed in the sprint that week.</p>
+
+						<h2>Camera Improvements (4 hours)</h2>
+						<p>One of my major tasks for the QA week was polishing up the camera panning feature and adding some new features. One change I had to make was adding in the ability to double click on a unit or city to have the camera snap to it. I also had to add tooltips for all the variables that could be tweaked on the camera's movement.</p>
+
+						<p>One of the problems I faced was with the way we handle raycasts intersecting with units. To prevent the unit from blocking the square behind it, we disable some interactions with it once it has been selected. To work around this, I had to find the script that handled unit selection and add a workaround to enable camera snapping.</p>
+
+						<center><video autoplay muted loop><source src="../images/Camera Snapping.mp4"></video></center>
+
+						<p>Another important aspect of implementing this feature was adding sufficient customizability in editor so designers could tinker with the camera as they needed. This meant serializing things like the pan and zoom speed. To insure that the designers knew what each variable meant, I went back through and added appropriate tooltips to each variable.</p>
+
+						<h2>Exhaust System Bug Fix (2.5 hours)</h2>
+						<p>Along with fixing the camera, I was also tasked with fixing how units spawned. Newly spawned units would be able to move and attack when they should spawn exhausted.</p>
+
+						<p>After running through the code in the debugger, I figured out that despite units being initialized as exhausted in the component, they would still spawn as if they had not moved or attacked. To fix this, I added a line in their script which would set them to exhausted on spawn. I also had to add an exception to commanders, since they should be able to move on their first turn.</p>
+
+						<h2>AI Purchase Strategy (5 hours)</h2>
+						<p>My task for week 1 of Sprint 2 was to implement the purchasing strategy for the AI player. This required me to read through both the design documentation on the AI as well as the AI scripts to understand how to implement strategies.</p>
+
+						<p>Implementing this strategy has several intricacies since its value is dependent on a variety of factors. The power of the unit is the first thing considered, with the AI prioritizing more powerful units. The AI will also consider its current composition, seeking a balance of melee, ranged, and aerial units. The AI will also consider how it can counter its opponents forces. Taking these points in mind, I developed a starting formula to implement this coming week:</p>
+						
+						<center><img src="../images/AI Purchase Formula.jpg" width="1200" height="300"></center>
+
+						<h2>Conclusion</h2>
+						<p>In total I spent 15.5 hours these past two weeks. I am excited to start working with the AI system and look forward to finishing up my strategies next week.</p>
+					</div>
+				</section>	
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

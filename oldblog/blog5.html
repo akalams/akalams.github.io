@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 5 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 5 (11/19-12/3) - Thanksgiving Break and the Final QA Week</h1>
+						<h2>Introduction</h2>
+						<p>The showcase is just around the corner! That means that the team has one last chance to fix bugs and add that last bit of polish. The first half of this 2 week cycle was also Thanksgiving, which was a great chance for us to unwind before this busy week!</p>
+						<h2>Meetings (4 hours)</h2>
+						<p>We had two, two hour meetings during this 2 week period. One QA check-in on the 29th and one wrap-up meeting on the 3rd.</p>
+
+						<h2>Bug Hunting (2 hours)</h2>
+						<p>A large portion of the QA process this week was running our own playtests to find bugs to squash. Since I was assigned to the AI, my playtesting sessions consisted of playing against the AI repeatedly. Throughout this process, I was able to locate a few bugs and then determine the proper steps to reproduce them.</p>
+
+						<h2>AI Movement Bugs (2 hours)</h2>
+						<p>The largest bug I had to tackl was a bug with how the AI handled moving. If you remember from my last blog, the AI had an issue with moving units beyond their movement limit. While I fixed this issue for terrain which did not obstruct movement, I forgot to consider the scenario where a unit is travelling over difficult terrain.</p>
+
+						<p>This bug would lead to the Swordsman moving over mountains despite mountains intended design to slow ground units down. I figured out that the reason for this bug was in how the AI handles intermediate spaces when moving units long distances. Rather than considering the cost of moving to a tile, the AI would only consider the number of tiles it had to cross. For example, if the AI had a movement with a move range of 5 and wanted to move it to a city 5 tiles away, it would ignore the fact that a mountain in the path increases the cost of the path beyond 5.</p>
+
+						<center><video autoplay muted loop><source src="../images/IncorrectMountain.mp4"></video><video autoplay muted loop><source src="../images/CorrectMountain.mp4"></video></center>
+						<center><i><p>Shown on the left is the incorrect behavior, the unit paths across the mountains like they are not there. On the right is the correct behavior, where the unit only travels one square before stopping.</p></i></center>
+
+						<p>Another issue in the movement was with the escape behavior. When escaping a unit, the AI tries to determine the average direction of its opponent's units so it can flee away from them. The issue is that if the direction takes a unit off the board, it will cause a null reference exception and break the AI. To fix this issue, I added a check to the target square that the unit is attempting to escape to to make sure that is valid. If it isn't, the closest valid square is used instead.</p>
+
+						<h2>AI Attack Range Bug (1 hours)</h2>
+						<p>This issue was a bug reported by one of our designers while they were testing. The AI's units could attack units outside of its attack range. This occurred because an individual unit's attack range was being scaled based the size of tiles. This was done as an efficient shortcut to figure out what enemies were in a unit's attack range. However, this messes up the AI's range calculations since it assumes that the range refers to tiles.</p>
+
+						<p>Fixing this issue was easier said than done because changing this value without considering its consequences could break several other systems. Before changing the number, I consulted the programmers responsible to ensure that I was not breaking anything. After getting their approval, I made the unit's range only scale when necessary instead of being stored as a scaled value.</p>
+
+						<center><video autoplay muted loop><source src="../images/OutRange.mp4"></video></center>
+						<center><i><p>Enemy unit attacks another unit beyond its attack range</p></i></center>
+
+						<h2>Misc Issues (1 hours)</h2>
+						<p>Along with the above bugs, I had a couple minor fixes to make.</p>
+
+						<p>First, the AI could sometimes stack its units on the same tiles. This bug would occur when the AI was finding an intermediate space to move to. I fixed the issue by adding an extra check to make sure the intermediate tile is not occupied.</p>
+
+						<p>Another bug allowed the AI to purchase multiple units from the same city in a turn, because it was not checking if units had already been purchased from a partificular city.</p>
+
+						<h2>Conclusion</h2>
+						<p>In total I spent 10 hours these past two week on Wolverine Soft. I am proud of my work this semester and am looking forward to the showcase!</p>
+					</div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

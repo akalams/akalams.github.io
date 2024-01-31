@@ -9,7 +9,7 @@
 		<title>Alex Kalams Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -29,31 +29,20 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
+				<!-- Blog 1 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 1 (1/28-2/11) - The First Classic Sprint</h1>
+						<h2>Introduction</h2>
+						<p>The showcase is just around the corner! That means that the team has one last chance to fix bugs and add that last bit of polish. The first half of this 2 week cycle was also Thanksgiving, which was a great chance for us to unwind before this busy week!</p>
+						<h2>Meetings (2 hours)</h2>
+						<p>We had two, two hour meetings during this 2 week period. One QA check-in on the 29th and one wrap-up meeting on the 3rd.</p>
 
-				<!-- Intro -->
-					<section id="Intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Introduction</h1>
-							
-							<p>Welcome to my blog for the Fall 2023 Wolverine Soft dev cycle. Here is where I will keep my notes from each sprint and what I worked on each week!</p>
-						
-							<h2>W24 Dev Blogs</h2>
-							<ul class="actions">
-								<li><a href="blog/blog1" class="button">Blog 1 (1/28-2/11)</a></li>
-							</ul>
+						<h2>Gunstar Heroes Study (1 hour)</h2>
+						<p>A large portion of the QA process this week was running our own playtests to find bugs to squash. Since I was assigned to the AI, my playtesting sessions consisted of playing against the AI repeatedly. Throughout this process, I was able to locate a few bugs and then determine the proper steps to reproduce them.</p>
+					</div>
+				</section>
 
-							<h2>F23 Dev Blogs</h2>
-							<ul class="actions">			
-								<li><a href="oldblog/blog1.html" class="button">Blog 1 (9/24-10/8)</a></li>
-								<li><a href="oldblog/blog2.html" class="button scrolly">Blog 2 (10/8-10/22)</a></li>
-								<li><a href="oldblog/blog3.html" class="button scrolly">Blog 3 (10/22-11/5)</a></li>
-								<li><a href="oldblog/blog4.html" class="button scrolly">Blog 4 (11/5-11/19)</a></li>
-								<li><a href="oldblog/blog5.html" class="button scrolly">Blog 5 (11/19-12/3)</a></li>
-							</ul>
-						</div>
-					</section>
-				
-				
 				
 		<!-- Footer -->
 			<footer id="footer" class="wrapper style1-alt">

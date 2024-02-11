@@ -34,12 +34,51 @@
 					<div class="inner">
 						<h1>Blog 1 (1/28-2/11) - The First Classic Sprint</h1>
 						<h2>Introduction</h2>
-						<p>The showcase is just around the corner! That means that the team has one last chance to fix bugs and add that last bit of polish. The first half of this 2 week cycle was also Thanksgiving, which was a great chance for us to unwind before this busy week!</p>
-						<h2>Meetings (2 hours)</h2>
-						<p>We had two, two hour meetings during this 2 week period. One QA check-in on the 29th and one wrap-up meeting on the 3rd.</p>
+						<p>These past two weeks made up the first sprint of Project Classic! I am excited to work on this project this semester. Let's look at what I worked on during this sprint!</p>
+						
+						<h2>Meetings (5 hours)</h2>
+						<p>We had two weekly meetings this week to meet with our squads and discuss the tasks that needed to be completed this week. Nikhil ended up holding us 30 minutes over for each of these weeks, so each meeting was 2.5 hours.</p>
 
-						<h2>Gunstar Heroes Study (1 hour)</h2>
-						<p>A large portion of the QA process this week was running our own playtests to find bugs to squash. Since I was assigned to the AI, my playtesting sessions consisted of playing against the AI repeatedly. Throughout this process, I was able to locate a few bugs and then determine the proper steps to reproduce them.</p>
+						<h2>Gunstar Heroes Enemy Study (2 hours)</h2>
+						<p>At the beginning of this sprint, I decided to play Gunstart Heroes with the intention of studying the ways enemies act as an inspiration for how I should implement behavior in game. One enemy I examined in particular was the drone since I had to recreate it.</p>
+
+						<h2>Enemy Script Design (2 hours)</h2>
+						<p>At the outset of this sprint, I wanted to lay out a generic framework for handling different enemy behaviors. The system would use coroutines to simplify the timing of enemy actions. The system would also be modular enough to allow for easily swapping out attacks for enemy variations.</p>
+
+						<p>Each enemy would implement two abstract classes to define its behavior. EnemyBehavior is a class which contains the behavior loop for the enemy, and the EnemyAction class defines an individual action that the enemy takes, such as moving or attacking. EnemyBehavior will store references to each of the actions on that enemy and call them at points in the enemy's loop specified by the implementation.</p>
+
+						<center><img src="../images/EnemyFramework.jpg" width="750" height="425"></center>
+
+						
+						<h2>Drone Enemies (6 hours)</h2>
+						<p>During the first week of the sprint, my main task was implementing the drone enemy. The drone had 3 variations that had to be implemented, a basic drone, a burst fire drone, and a bomb drone. The following video shows the basic drone.</p>
+
+						<center><video autoplay muted loop><source src="../images/drone_gif.mp4"></video></center>
+
+						<p></p>
+						<p>As you can see the drone alternates between zig zagging above the player and firing projectiles at the player. To set up this behavior loop, I defined 3 actions for the drone to take. The drone would do a move action, where it would move randomly away from the player. The drone would then move toward the player before doing a fire projectile action. When designing the drone, I had to consider how to best take advantage of polymorphism so that I could easily sub in different attacks when creating drone variants. Since all 3 variants had the same movement but different firing methods, I created separate attack scripts for each variant that would be called by each variant.</p>
+
+						<h2>Boss Behavior (6 hours)</h2>
+						<p>For the second week of this sprint, Will and I had to begin implementing the flying boss. The boss is tricky because it is supposed to have several variant attacks which all need to be considered when implementing its behavior. Thankfully, the framework I had created for basic enemies worked perfectly for the boss.</p>
+
+						<p>For our initial implementation, we decided to add the boss's movement and a couple attacks. Will handled the attacks while I handled the movement and the boss's governing behavior. The below video shows the boss prototype in action!</p>
+
+						<center><video autoplay muted loop><source src="../images/Boss_Demo.mp4"></video></center>
+
+						<p></p>
+						<p>Above you can see the boss alternating between repositioning around the player and firing 1 of 2 attacks it has to choose from at the player.</p>
+
+						<h2>Projectile System (3 hours)</h2>
+						<p>In its final state, Project Classic is going to have tons of projectiles being fired from both the player and the enemies they face. Constantly instantiating projectiles at runtime could be problematic for performance, so we had to develop a new system to handle projectiles.</p>
+
+						<p>The leads created a projectile pool system. Basically, a large list of projectiles would be created at the start of the game. Any object that wanted to fire a projectile would pull a projectile from this pool instead of spawning its own, which saved on performance. However, this system raises an interesting issue. How do you handle different types of projectiles?</p>
+
+						<p>My idea for this system was to have a new ScriptableObject called ProjectileData. Whenever you wanted to create a new projectile, you would create a new ProjectileData scriptable object. This object would be passed to the projectile system whenever you wanted to fire the projectile. The projectile system would then configure all the properties of the projectile, such as its velocity and sprite, using this Projectile Data object.</p>
+
+						<center><img src="../images/projectile_data.png" width="600" height="750"></center>
+
+						<h2>Conclusion</h2>
+						<p>In total I spent 24 hours this week. I am looking forward to the weeks ahead where we will have a QA sprint and the beginning of the second feature sprint!</p>
 					</div>
 				</section>
 

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 2 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 2 (2/11-2/25) - Spring Break is here!</h1>
+						<h2>Introduction</h2>
+                        <p>These two weeks were composed of a QA sprint along with the first half of our second feature sprints.</p>
+
+                        <h2>Studio Meetings (4 hours)</h2>
+                        <p>We had our weekly studio meetings on Sunday to check in with our respective teams as usual.</p>
+
+                        <h2>Bug Fixes (6 hours)</h2>
+                        <p>The QA sprint involved fixing various bugs in the game so that we can hopefully have a stable build to playtest and get design feedback. Since I was on the enemies team, most of my fixes revolved around the bosses and enemies</p>
+
+                        <p>Most of the bugs were pretty simple to fix. However, there was one interesting one that took me a bit longer and allowed me to learn a bit more about Unity's physics system in the process. We had an issue where enemies were pushing each other around, even when they were not touching each other.</p>
+
+                        <p>This issue was pretty odd since the enemies were set in the project settings to not collide with each other. After some digging around in the prefabs, I found a component attached to several of the enemies called a point actuator. The purpose of this component is to create a repulsive force around an object that propels nearby objects away. However, the actuator still shouldn't have been pushing enemies due to the collision layers. However, I soon found out about a sneaky option on the actuator called layer override. It was set to the enemy layer, which you think would cause it to only collide with objects that enemies can collide with. However, what it actually did was overrite the object's layer setting to also collide with enemies. There are tons of small things like this in Unity that can blow you up if you don't know about them, so I'm glad I got a chance to learn one of them.</p>
+
+                        <h2>New Boss Attacks (10 hours)</h2>
+                        <p>My main task for the first week of the feature sprint was to implement a handful of new boss attacks. Thanks to the boss behavior framework I had setup the previous week which took advantage of composition, the new attacks would "just work" when I added them to the boss!</p>
+
+                        <p>The first attack I tackled was the bouncing bullet attack. This attack fires two projectiles that will bounce around the arena. Implementing the attack was relatively simple. What was more complicated was modifying the projectile system I had previously created to handle bouncy projectiles. I wanted the system to use composition, not inheritance, so the bounciness of a projectile could be easily enabled and disabled. I created an IsBouncing component that would be activated whenever a projectile is fired. This component would simply flip the x or y component of the projectile's velocity when it hit a wall or floor.</p>
+
+                        <center><img src="../images/Bounce_Attack.gif"></center>
+
+                        <p>The next attack I worked on was the cross fire attack. This is an attack that will fire projectiles in a rotating cross pattern. Implementing this attack required me to think in angles.</p>
+
+                        <center><img src="../images/Cross_Attack.gif"></center>
+
+                        <p>Lastly, I fixed up the previously implemented burst fire attack so that it would fire 3 separate bursts instead of just 1. I also made the number of bursts, and the number of projectiles per a burst configurable, so that the designers could easily modify the attack behavior as they liked.</p>
+
+                        <h2>Work in Progress on Laser Attack (4 hours)</h2>
+                        <p>Since I had a bit of extra time, I decided to start working on another one of the attacks in the design documentation, the laser attack. This attack would be different than the others, because it would use a continuously firing laser instead of discretely fired projectiles.</p>
+
+                        <p>The way I chose to implement the laser was as a new game object with a box trigger that would continously damage the player while they stood in it. This would simplify the attack, because I could effectively instantiate the laser once and then just rotate the new object as I needed.</p>
+
+                        <center><img src="../images/Laser_Attack.gif"></center>
+
+                        <p>Figuring out how to rotate the laser was a bit tricky and required me to do some angle math to figure out what direction the player was in relative to the boss and how the boss would need to rotate its laser to hit the player. I am not super satisfied with how its working, so I will come back and touch this up after Spring break.</p>
+
+                        <h2>Conclusion</h2>
+                        <p>This week, I worked for a total 24 hours! I'm looking forward to finish out this sprint after a restful break.</p>
+					</div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

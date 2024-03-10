@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 2 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 3 (2/25-3/10) - Back from Break</h1>
+						<h2>Introduction</h2>
+                        <p>Last week I got back from my spring break trip and started Wolverine Soft development again! Let's get started!</p>
+
+                        <h2>Studio Meeting (2 hours)</h2>
+                        <p>As usual, we had our weekly studio meeting. However, there was only 1 in the past 2 weeks because of Spring break.</p>
+
+                        <h2>New Boss Attacks (6 hours)</h2>
+                        <p>This week I was tasked with implementing a couple new attacks for the boss to use. These attacks were a little trickier to implement than the previous ones since they had some unique behavior.</p>
+
+                        <p>The first was the balls of fire attack, where the boss fires 12 projectiles which rotate in a shrinking circle around the boss room.</p>
+
+                        <center><img src="../images/Ring.gif"></center>
+                        <p></p>
+                        <p>This attack required me to do some trigonometry to figure out where the projectiles should go. The challenge is figuring out how the projectiles should be spawned at the boss's then move seamlessly into the circle. What I did to solve this issue was place a script on each of the balls of fire. This script would be initialized when the projectile is spawned, and calculate the desired location every fixed update. The velocity of the projectile would then be set such that it would approach this desired location, leading to a smooth beginning to the attack.</p>
+                        
+                        <p>The second attack was a rain of projectiles attack. In this attack, the boss will rapidly spawn projectiles which drop down from the ceiling of the boss room.</p>
+
+                        <center><img src="../images/Rain.gif"></center>
+                        <p></p>
+                        <p>In theory, this attack shouldn't be too difficult to implement, since it would just involve spawning random projectiles along a line. The challenge is figuring out how to conform the attack to the dimensions of the boss room. Thankfully, the level programmers had the foresight to put a collider on every room. This means that I can grab the extents of the collider and use that to figure out the coordinates of the ceiling.</p>
+
+                        <h2>Boss Modes (4 hours)</h2>
+                        <p>Another characteristic of the boss is its mode. These are modifiers randomly placed on the boss which modify its attacks</p>
+
+                        <p>Before creating any modes, I wanted to establish a system that used composition and polymorphism. To do this, I created an abstract "Boss Mode" class which had several unimplimented functions. A new mode would then implement this class. The mode could then be added to the boss's components and its effects would be automatically applied. This approach makes the implication a bit trickier, but it simplifies the process greatly for other programmers since they can simply put the mode on the boss and it will just work.</p>
+
+                        <p>The first and only mode I worked on this week was the explosive attack mode. This mode modifies all of the projectiles fired by the boss to become explosive. Thanks to the projectile system that I had already developed this change was as simple as changing a checkbox in a scriptable object.</p>
+
+                        <p>The one bit of complexity was that the explosion had to trigger whenever a bouncy projectile bounced. To do this, I created an onDeath event on projectiles. The bouncy projectile would then invoke the onDeath event, spawning an explosion.</p>
+					
+                        <h2>Conclusion</h2>
+                        <p>In total I spent 12 hours on studio work this week.</p>
+                    </div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 2 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 3 (3/10-3/24) - One of the sprints of all time</h1>
+						<h2>Introduction</h2>
+                        <p>This was just a regular two weeks with a QA and feature week. Let's get started.</p>
+
+                        <h2>Studio Meeting (4 hours)</h2>
+                        <p>You know the drill.</p>
+
+                        <h2>Bug Fixes (8 hours)</h2>
+                        <p>During the QA week, my job was to clean up various issues that cropped up on the boss.</p>
+
+                        <p>Several issues arose because I was mainly testing the boss in my own lab scene instead of the actual gameplay scene. One such issue was the ball of fire attack I implemented last week. This attack is meant to span the entire room, but because I tested it in a lab scene with a much smaller room, it wasn't nearly large enough. To fix the issue, I made the starting radius based on the size of the room so that it could adapt to the environment the level designers put it in. However, I am not fully satisfied with my implementation and hope to polish it further in the coming weeks.</p>
+
+                        <p>A second issue I had to fix was with the balls of fire not taking damage from player projectiles. Fixing this issue involve combining scripts from the existing repository instead of writing my own code. I added an enemy health script to the ball of fire projectiles which allowed the to take damage just like enemies while still maintaining their properties. Another win for composition!</p>
+
+                        <p>I had to fix an issue with the laser attack where it was not properly targetting the player at the beginning of the attack and only pointed downward. This issue took longer to fix than I care to admit, but it turned out that I had forgotten to convert degrees to radians at one point.</p>
+
+                        <p>Another issue with the laser was that it was not properly interacting with the explosive mode that I created the previous week. It should have spawned multiple explosives along the laser's path after it is finished firing. I had a clever solution to fix this issue that allowed me to avoid rewriting code. I had the laser attack script store projectile data on it for an explosive projectile that would have a lifespan of 0. This meant that the explosions would look like they were immediately being spawned when a projectile was actually being spawned first. This also meant that when the boss was not in explosive mode, these projectiles would spawn and do nothing.</p>
+
+                        <h2>More Boss Modes (10 hours)</h2>
+                        <p>In the last feature sprint, I was tasked with implementing several of the boss modes. However, I ran out of time and was unable to get to implementing all of them. During this feature weak, I was able to catch up.</p>
+
+                        <p>The first boss mode I implemented was the energized mode. This mode would shrink the boss, increase its speed, increase its projectile speed, and decrease its cooldown between attacks. Since I was already exposing many of these value in the editor for easy tweaking by the designer, I could also multiply these values by various multipliers on the start of the boss's behavior.</p>
+
+                        <p>The next mode I did was the protective mode. In this mode, the boss will create a shield which absorbs some damage after each attack. At first, I experimented with creating the shield as a child of the boss. However, this created an issue because any collisions with the shield would be passed up to the boss's enemy health script to still take damage. Instead, I created a new shield object which would set its position to the boss's position every frame. This shield would have a larger hit box than the boss, so it would still block attacks while active.</p>
+
+                        <center><img src="../images/shield.gif"></center>
+                        <p></p>
+                        <p>Lastly, I implemented the aura mode for bosses. This mode creates a temporary debuffing aura whenever a projectile fired by the boss is destroyed. This mode is very similar to the explosive mode, and makes use of the explosive projectile script to spawn an object whenever a projectile dies. However, one difference is that the aura's mode must be randomized after each attack. Thank's to Will's work on the debuffer, I was able to repurpose his code for the boss and the implementation was painless.</p>
+
+                        <center><img src="../images/aura.gif"></center>
+                        <p></p>
+                        <h2>Boss Spawning Fixes (2 hours)</h2>
+                        <p>After learning my lesson from the QA sprint, I decided to test my new boss features in the main scene, and I'm glad I did. I stumbled upon a few null reference exceptions that were popping up when the level manager attempted to spawn the boss. I had to spend a decent amount of time fixing these issues so I could properly test the boss, which unfortunately sucked up a lot of time and stopped me from implementing any more modes this week.</p>
+                        
+                        <h2>Conclusion</h2>
+                        <p>In total I accomplished 24 hours of work over these past 2 weeks. I'm looking forward to finsihing out this last month before graduation!</p>
+                    </div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="games">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Blog 5 -->
+				<section id="five" class="wrapper style2">
+					<div class="inner">
+						<h1>Blog 5 (3/10-4/7) - Second to Last Sprint</h1>
+						<h2>Introduction</h2>
+                        <p>These two weeks had contained the last feature sprint along with the final QA week before the upcoming polish weeks. Let's get started!</p>
+
+                        <h2>Studio Meeting (4 hours)</h2>
+                        <p>We had 2 two hour meetings to discuss tasks while playtesting the game and taking notes on what needed to be fixed.</p>
+
+                        <h2>Boss Modes (6 hours)</h2>
+                        <p>This week saw a couple final improvements to the boss modes. The first change was to allow boss modes to stack on top of each other. This would allow the boss to acquire more modes as the run progresses, increasing the boss's difficulty. To implement this functionality, I had to implement a method for randomly selecting multiple modes like I did last week for attacks. I also had to enable explosive projectiles to spawn multiple explosions. </p>
+                        <p>In the process of implementing these changes, I found an issue with scriptable objects I was using to spawn projectiles. Whenever I modified a scriptable object in a script, it would also modify the editor's copy of the scriptable object, making the changes permanent in between runs. To fix this issue, I made sure to make a copy of a scriptable object whenever I was going to modify it so any changes would not be permanent.</p>
+                        <p>I also managed to get in one last new boss mode, the shockwave mode. This mode would add a slowly expanding AoE that would apply a force to the player when they were hit.</p>
+
+                        <h2>Boss Attacks (6 hours)</h2>
+                        <p>Along with these changes I made to the boss modes, I also implemented a couple new boss attacks</p>
+                        <p>The first attack will spawn two turrets in the boss room which will fire projectiles in a cross pattern. These turrets will continue to exist after the boss does its attack which adds an extra threat that the player must contend with.</p>
+
+                        <center><img src="../images/turret.gif"></center>
+
+                        <p>I also added a "firework" attack which spawns stationary projectiles throughout the room which explode after a brief delay.</p>
+
+                        <center><img src="../images/fireworks.gif"></center>
+
+                        <h2>Assorted Bug Fixes (8 hours)</h2>
+                        <p>Along with the above features that I implemented, I also completed some bug fixes, mainly for the boss. Here are a couple of the major changes I made.</p>
+
+                        <p>The first major issue was getting the boss damage visuals to function properly. They would break because the boss's visuals are made up of several child components which the enemy health component was not able to access. I had to change the enemy health script to search for all sprite renderers on the actor, not just the one on the parent object.</p>
+
+                        <p>Another issue I fixed was that some of the attacks that were dependent on the room size such as the rain attack were not working. This happened because the box collider that used to exist on rooms was removed and could no longer be used to easily find the dimensions of a room. To fix this bug, I added back new colliders to all the boss room level chunks which would outline the perimeter of the room.</p>
+                    
+                        <h2>Conclusion</h2>
+                        <p>In total, I did 24 hours of work this week.</p>
+                    </div>
+				</section>
+
+				
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

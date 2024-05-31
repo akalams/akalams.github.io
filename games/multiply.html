@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Alex Kalams Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- header -->
+			<header id="header">
+				<a href="/" class="title">Alex Kalams</a>
+				<nav>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="games" class="active">Games</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="work">Work</a></li>
+						<li><a href="blog">Blog</a></li>
+					</ul>
+				</nav>
+			</header>
+
+        <!-- Wrapper -->
+			<div id="wrapper">				
+				<!-- Multiply -->
+					<section id="Multiply" class="wrapper style1">
+						<div class="inner">
+							<h1 class="major">Project Multiply/Tales of War - <em>Programmer</em></h1>
+							<span class="image fit"><img src="../images/TalesOfWarBanner.png" loading="lazy" alt="" /></span>
+							<p>Tails of War, also known as Project Multiply, is a multiplayer turn-based tactics game that I helped develop over two semesters at Wolverine Soft Studio. The project was the studio's first attempt at making an online multiplayer game which presented some new challenges but was also super exciting to work on!</p>
+
+							<p>During the Summer semester of this project my main job was to create the foundation for the matchmaking system. Using the Photon library for Unity, I created the basic room creation and joining system. I also allowed rooms to be password locked for private games.</p>
+
+							<div class="row gtr-uniform">
+								<div class="col-6"><span class="image"><img src="../images/create_room.gif" loading="lazy" width="550" height="300" alt="" /></span></div>
+								<div class="col-6"><span class="image"><img src="../images/join_room.gif" loading="lazy" width="550" height="300" alt="" /></span></div>
+							</div>
+							<p>During the following Fall semester, I moved from working on the matchmaking to helping build the AI for the singleplayer mode. The AI used a weighting system where every action was given a score based on how effective the move would be. The AI would then select the highest scoring option. My job on the project was to create scoring algorithms for several possible enemy actions including each of the three commanders' special abilities. I also got to work with Unity's editor tool system to develop a helpful visualization tool for which tiles the AI would favor.</p>
+
+                            <div class="row gtr-uniform">
+								<div class="col-6"><span class="video"><video autoplay muted loop width="590"><source src="../images/ArchmageBehavior.mp4"></span></div>
+								<div class="col-6"><span class="video"><video autoplay muted loop width="590"><source src="../images/TileWeight_1.mp4"></span></div>
+							</div>
+
+                            <p></p>
+
+							<a href="https://store.steampowered.com/app/2687500/Tails_of_War/" class="button primary icon solid fa-gamepad">Play Game</a>
+						</div>
+					</section>
+
+			</div>
+			
+
+
+        <!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt fade-up">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Alex Kalams. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+    </body>
+</html>
